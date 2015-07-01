@@ -1,6 +1,6 @@
 require 'jira'
 
-config = YAML.load_file(File.join(Dir.pwd, "application.yml"))
+config = Config.get
 
 SCHEDULER.every "10m", :first_in => 0 do |job|
   client = JIRA::Client.new({
@@ -11,6 +11,7 @@ SCHEDULER.every "10m", :first_in => 0 do |job|
     :context_path => ""
   })
 
+  # TODO Refactor to move these into the Jira class where possible
   begin
     closed_points = client.Issue.jql(config["jira"]["queries"]["closedSprintStories"]).map{ |issue| issue.fields["customfield_10103"] }.reduce(:+) || 0
     total_points = client.Issue.jql(config["jira"]["queries"]["openSprintStories"]).map{ |issue| issue.fields["customfield_10103"] }.reduce(:+) || 0

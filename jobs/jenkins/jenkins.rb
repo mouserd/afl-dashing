@@ -5,7 +5,7 @@ require 'uri'
 
 class Jenkins
   class << self
-    config = YAML.load_file(File.join(Dir.pwd, "application.yml"))
+    config = Config.get
 
     JENKINS_JOB_BUILDS_URL = config["jenkins"]["urls"]["jobBuilds"]
     JENKINS_TEST_RESULTS_URL = config["jenkins"]["urls"]["testResults"]

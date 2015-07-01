@@ -3,7 +3,7 @@ require 'net/http'
 require 'json'
 require 'time'
 
-config = YAML.load_file(File.join(Dir.pwd, "application.yml"))
+config = Config.get
 
 JIRA_URI = URI.parse(config["jira"]["url"])
 
@@ -12,6 +12,7 @@ JIRA_AUTH = {
   "password" => config["jira"]["password"]
 }
 
+# TODO Refactor to move these into the Jira class where possible
 # the key of this mapping must be a unique identifier for your board, the according value must be the view id that is used in Jira
 view_mapping = {
   "view1" => { :view_id => 26 },
