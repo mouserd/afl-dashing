@@ -3,7 +3,7 @@ $last = nil
 def get_jira_open_defects_count
   config = Config.get
 
-  results = Jira.sum_story_points_query(config["jira"]["queries"]["openDefects"])
+  results = Jira.sum_story_points_query("Open Defects", config["jira"]["queries"]["openDefects"])
   send_event("jira-open-defects", { current: results["count"], last: $last || results["count"] })
 
   results["count"]

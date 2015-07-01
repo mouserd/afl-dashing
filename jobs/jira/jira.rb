@@ -17,7 +17,9 @@ class Jira
         :max_results => 1000
     }
 
-    def sum_story_points_query(query)
+    def sum_story_points_query(type, query)
+
+      puts "[DEBUG] Fetching jira #{type} query story points and count..."
 
       results = {}
       query_results = []
@@ -30,6 +32,8 @@ class Jira
 
       results["storyPoints"] = query_results.map { |issue| issue.fields["customfield_10103"] || 0 }.reduce(:+) || 0
       results["count"] = query_results.length
+
+      puts "[DEBUG] results: #{results}"
 
       results
     end
