@@ -3,14 +3,15 @@ require 'jira'
 class Jira
 
   class << self
-    @@config = YAML.load_file(File.join(Dir.pwd, "application.yml"))
+    config = Config.get
     @@client = JIRA::Client.new({
-        :username => @@config["jira"]["username"],
-        :password => @@config["jira"]["password"],
-        :site => @@config["jira"]["url"],
+        :username => config["jira"]["username"],
+        :password => config["jira"]["password"],
+        :site => config["jira"]["url"],
         :auth_type => :basic,
         :context_path => ""
     })
+    @@storyPointsFieldKey = config["jira"]["elements"]["storyPointFieldId"]
 
     @@query_options = {
         :start_at => 0,
@@ -19,7 +20,7 @@ class Jira
 
     def sum_story_points_query(type, query)
 
-      puts "[DEBUG] Fetching jira #{type} query story points and count..."
+      puts "[DEBUG] Fetching jira '#{type}' query results..."
 
       results = {}
       query_results = []
@@ -30,7 +31,7 @@ class Jira
         puts error.response
       end
 
-      results["storyPoints"] = query_results.map { |issue| issue.fields["customfield_10103"] || 0 }.reduce(:+) || 0
+      results["storyPoints"] = query_results.map { |issue| issue.fields[@@storyPointsFieldKey] || 0 }.reduce(:+) || 0
       results["count"] = query_results.length
 
       puts "[DEBUG] results: #{results}"
