@@ -1,0 +1,72 @@
+<script type='text/javascript'>
+  $(function() {
+    // These settings override the defaults set in application.coffee. You can do this on a per dashboard basis.
+//    Dashing.gridsterLayout('[{"col":2,"row":1},{"col":1,"row":1},{"col":3,"row":1},{"col":2,"row":2},{"col":3,"row":2},{"col":1,"row":2},{"col":5,"row":1},{"col":4,"row":2},{"col":2,"row":3}]');
+    Dashing.widget_base_dimensions = [370, 340];
+    Dashing.numColumns = 5;
+//    Dashing.numRows = 3;
+  });
+</script>
+
+<% content_for :title do %>Developer Metrics Dashboard<% end %>
+<div class="gridster">
+  <ul>
+
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="unit-test-count" data-view="Number" data-title="Unit Tests" data-min="0"></div>
+    </li>
+
+    <li data-row="1" data-col="2" data-sizex="1" data-sizey="1">
+      <div data-id="js-unit-test-count" data-view="Number" data-title="JS Unit Tests" data-min="0"></div>
+    </li>
+
+    <li data-row="1" data-col="3" data-sizex="1" data-sizey="1">
+      <div data-id="integration-test-count" data-view="Number" data-title="Integration Tests" data-min="0"></div>
+    </li>
+
+    <li data-row="1" data-col="4" data-sizex="1" data-sizey="1">
+      <div data-id="bdd-test-count" data-view="Number" data-title="BDD Tests" data-min="0"></div>
+    </li>
+
+
+    <li data-row="2" data-col="2" data-sizex="3" data-sizey="1">
+      <div data-id="welcome" data-view="Text" data-title="Developer Metrics" data-text="What have you improved today?"></div>
+    </li>
+
+    <!--<li data-row="2" data-col="3" data-sizex="1" data-sizey="1">-->
+      <!--<div data-id="findbugs" data-view="Number" data-title="Findbugs" data-min="0" style="background-color:#96bf48;"></div>-->
+    <!--</li>-->
+
+    <!--<li data-row="2" data-col="4" data-sizex="1" data-sizey="1">-->
+      <!--<div data-id="pmd" data-view="Number" data-title="PMD" data-min="0" style="background-color:#96bf48;"></div>-->
+    <!--</li>-->
+
+    <!--<li data-row="2" data-col="5" data-sizex="1" data-sizey="1">-->
+      <!--<div data-id="checkstyle" data-view="Number" data-title="Checkstyle" data-min="0" style="background-color:#96bf48;"></div>-->
+    <!--</li>-->
+
+    <!--<li data-row="3" data-col="1" data-sizex="2" data-sizey="1">-->
+      <!--<div data-id="findbugs-graph" data-view="Graph" data-title="Findbugs Graph"></div>-->
+    <!--</li>-->
+
+    <li data-row="3" data-col="2" data-sizex="1" data-sizey="1">
+      <div data-id="findbugs-meter" data-view="MeterNumber" data-title="Findbugs" data-min="0" data-max="136"></div>
+    </li>
+
+    <li data-row="3" data-col="3" data-sizex="1" data-sizey="1">
+      <div data-id="pmd-meter" data-view="MeterNumber" data-title="PMD" data-min="0" data-max="4232"></div>
+    </li>
+
+    <li data-row="3" data-col="4" data-sizex="1" data-sizey="1">
+      <div data-id="checkstyle-meter" data-view="MeterNumber" data-title="Checkstyle" data-min="0" data-max="180"></div>
+    </li>
+
+    <li data-row="1" data-col="5" data-sizex="1" data-sizey="1">
+      <div data-id="jira-sprint-progress" data-view="SprintProgress" data-title="Sprint Progress" data-min="0"></div>
+    </li>
+
+    <li data-row="2" data-col="5" data-sizex="1" data-sizey="1">
+      <div data-id="jira-sprint-days-remaining" data-view="JiraSprintRemainingDays" style="background-color: #4682b4"></div>
+    </li>
+  </ul>
+</div>
