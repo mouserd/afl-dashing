@@ -18,13 +18,17 @@ class Jenkins
 
     def get_test_results(jenkinsJobName)
 
-      puts "[DEBUG] Fetching '#{jenkinsJobName}' test results..."
+      puts "[DEBUG] Fetching Jenkins '#{jenkinsJobName}' test results..."
 
       results = {}
       builds = get_jenkins_builds(jenkinsJobName)
 
-      results["current"] = get_jenkins_json_metric(JENKINS_TEST_RESULTS_URL % [jenkinsJobName, builds[0]["number"]], "totalCount")
-      results["last"] = get_jenkins_json_metric(JENKINS_TEST_RESULTS_URL % [jenkinsJobName, builds[1]["number"]], "totalCount")
+      if builds.length > 0
+        results["current"] = get_jenkins_json_metric(JENKINS_TEST_RESULTS_URL % [jenkinsJobName, builds[0]["number"]], "totalCount")
+        if builds.length > 1
+          results["last"] = get_jenkins_json_metric(JENKINS_TEST_RESULTS_URL % [jenkinsJobName, builds[1]["number"]], "totalCount")
+        end
+      end
 
       puts "[DEBUG] results: #{results}"
 
@@ -33,13 +37,17 @@ class Jenkins
 
     def get_js_test_results(jenkinsJobName)
 
-      puts "[DEBUG] Fetching '#{jenkinsJobName}' JS test results..."
+      puts "[DEBUG] Fetching Jenkins '#{jenkinsJobName}' JS test results..."
 
       results = {}
       builds = get_jenkins_builds(jenkinsJobName)
 
-      results["current"] = get_jenkins_json_metric(JENKINS_JS_UNIT_TEST_RESULTS_URL % [jenkinsJobName, builds[0]["number"]], "passCount")
-      results["last"] = get_jenkins_json_metric(JENKINS_JS_UNIT_TEST_RESULTS_URL % [jenkinsJobName, builds[1]["number"]], "passCount")
+      if builds.length > 0
+        results["current"] = get_jenkins_json_metric(JENKINS_JS_UNIT_TEST_RESULTS_URL % [jenkinsJobName, builds[0]["number"]], "passCount")
+        if builds.length > 1
+          results["last"] = get_jenkins_json_metric(JENKINS_JS_UNIT_TEST_RESULTS_URL % [jenkinsJobName, builds[1]["number"]], "passCount")
+        end
+      end
 
       puts "[DEBUG] results: #{results}"
 
@@ -48,16 +56,20 @@ class Jenkins
 
     def get_bdd_test_results(jenkinsJobName)
 
-      puts "[DEBUG] Fetching '#{jenkinsJobName}' BDD test results..."
+      puts "[DEBUG] Fetching Jenkins '#{jenkinsJobName}' BDD test results..."
 
       results = {}
       builds = get_jenkins_builds(jenkinsJobName)
 
-      doc = Nokogiri::HTML(open(URI.escape(JENKINS_BDD_RESULTS_URL % [jenkinsJobName, builds[0]["number"]]), BASIC_AUTH))
-      results["current"] = doc.css('#stats-total-scenarios').text
+      if builds.length > 0
+        doc = Nokogiri::HTML(open(URI.escape(JENKINS_BDD_RESULTS_URL % [jenkinsJobName, builds[0]["number"]]), BASIC_AUTH))
+        results["current"] = doc.css('#stats-total-scenarios').text
 
-      doc = Nokogiri::HTML(open(URI.escape(JENKINS_BDD_RESULTS_URL % [jenkinsJobName, builds[1]["number"]]), BASIC_AUTH))
-      results["last"] = doc.css('#stats-total-scenarios').text
+        if builds.length > 1
+          doc = Nokogiri::HTML(open(URI.escape(JENKINS_BDD_RESULTS_URL % [jenkinsJobName, builds[1]["number"]]), BASIC_AUTH))
+          results["last"] = doc.css('#stats-total-scenarios').text
+        end
+      end
 
       puts "[DEBUG] results: #{results}"
 
@@ -65,7 +77,7 @@ class Jenkins
     end
 
     def get_analysis_results(analysisType, jenkinsJobName, buildNo = "lastSuccessfulBuild")
-      puts "[DEBUG] Fetching '#{jenkinsJobName}' #{analysisType} results..."
+      puts "[DEBUG] Fetching Jenkins '#{jenkinsJobName}' #{analysisType} results..."
       results = {}
 
       data = get_jenkins_json(JENKINS_ANALYSIS_RESULTS_URL % [jenkinsJobName, buildNo, analysisType])
@@ -78,7 +90,7 @@ class Jenkins
     end
 
     def get_historic_analysis_results(analysisType, jenkinsJobName)
-      puts "[DEBUG] Fetching '#{jenkinsJobName}' historic #{analysisType} results..."
+      puts "[DEBUG] Fetching Jenkins '#{jenkinsJobName}' historic #{analysisType} results..."
       results = []
 
       builds = get_jenkins_builds(jenkinsJobName)
