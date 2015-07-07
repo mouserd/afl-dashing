@@ -9,8 +9,8 @@ def get_jira_open_defects_count
   results["count"]
 end
 
-$last = get_jira_open_defects_count
+# $last = get_jira_open_defects_count
 
-SCHEDULER.every "5s" do
+SCHEDULER.every "30m", :first_in => 0 do |job|
   get_jira_open_defects_count
 end

@@ -15,7 +15,7 @@
 # fetchAnalysisResults(points)
 #
 # # Then every 1 hour thereafter.
-# SCHEDULER.every '1h' do
+# SCHEDULER.every '1h', :first_in => 0 do |job|
 #   fetchAnalysisResults(points)
 # end
 
