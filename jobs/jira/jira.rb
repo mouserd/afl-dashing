@@ -20,7 +20,7 @@ class Jira
 
     def sum_story_points_query(type, query)
 
-      puts "[DEBUG] Fetching jira '#{type}' query results..."
+      puts "[DEBUG] Fetching Jira '#{type}' query results..."
 
       results = {}
       query_results = []
