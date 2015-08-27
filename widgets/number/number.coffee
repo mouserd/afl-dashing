@@ -6,8 +6,10 @@ class Dashing.Number extends Dashing.Widget
       last = parseInt(@get('last'))
       current = parseInt(@get('current'))
       if last != 0
-#        diff = Math.abs(Math.round((current - last) / last * 100))
-        diff = Math.abs(current - last)
+        if (@get('showDifferenceAsPercentage'))
+          diff = Math.abs(Math.round(((current - last) / (current + last) / 2) * 100))
+        else
+          diff = Math.abs(current - last)
         if diff != 0
           "#{diff}"
         else
@@ -24,6 +26,18 @@ class Dashing.Number extends Dashing.Widget
         'icon-arrow-down'
       else
         'icon-minus'
+
+  @wrapAccessor 'updatedAtMessage', (core) ->
+    get: () ->
+      console.log(@get('customUpdatedAt'))
+      if (!@get('customUpdatedAt'))
+        core.get.call(this)
+      else
+        updatedAt = @get('customUpdatedAt')
+        timestamp = new Date(updatedAt)
+        day = timestamp.getDate()
+        month = timestamp.getMonth() + 1
+        "Last updated #{day}/#{month}"
 
   onData: (data) ->
     if data.status
