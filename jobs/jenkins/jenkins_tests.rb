@@ -6,11 +6,11 @@ def fetch_test_results
   integration_test_results = Jenkins.get_test_results("CMS integration test numbers");
   js_unit_tests_results = Jenkins.get_js_test_results("CMS unit test numbers")
 
-  unit_test_results["current"] -= js_unit_tests_results["current"]
-  unit_test_results["last"] -= js_unit_tests_results["last"]
+  unit_test_results["current"] -= js_unit_tests_results["current"] || 0
+  unit_test_results["last"] -= js_unit_tests_results["last"] || 0
 
-  integration_test_results["current"] -= js_unit_tests_results["current"]
-  integration_test_results["last"] -= js_unit_tests_results["last"]
+  integration_test_results["current"] -= js_unit_tests_results["current"] || 0
+  integration_test_results["last"] -= js_unit_tests_results["last"] || 0
 
   puts "[DEBUG] Recalculated unit test results #{unit_test_results}"
 
