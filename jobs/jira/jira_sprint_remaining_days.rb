@@ -82,7 +82,11 @@ view_mapping.each do |view, view_id|
       sprint_json = get_active_sprint_for_view(view_json["id"])
       if (sprint_json)
         sprint_name = sprint_json["name"]
-        sprint_name = sprint_name.slice(sprint_name.index(" - ")+3..sprint_name.length)
+
+        ## Cleanup jira sprint name just to show the actual sprint number.
+        sprint_name = sprint_name.slice(sprint_name.index(" - ")+3..sprint_name.length)  # Remove #808
+        sprint_name = sprint_name.slice(0..sprint_name.index(" - "))  # Remove sprint date
+
         days_json = get_remaining_days(view_json["id"], sprint_json["id"])
         days = days_json["days"]
       end
