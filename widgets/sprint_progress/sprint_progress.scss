@@ -20,16 +20,6 @@ $meter-background:  darken($background-color, 7%);
     color: #fff;
   }
 
-  canvas {
-    width: 180px;
-    height: 180px;
-  }
-
-  .meter {
-    margin-left: -142px !important;
-    font-size: 36px !important;
-  }
-
   .title {
     color: $title-color;
   }
