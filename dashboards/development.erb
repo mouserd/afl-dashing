@@ -7,6 +7,10 @@
     Dashing.numRows = 4;
   });
 </script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+  google.load("visualization", "1", {packages:["corechart"]});
+</script>
 <style>
 
   h2.value {
@@ -75,19 +79,24 @@
     </li>
 
     <li data-row="2" data-col="3" data-sizex="1" data-sizey="1">
-      <div data-id="integration-test-count" data-view="Number" data-title="Integration Tests" data-min="0"></div>
-    </li>
-
-    <li data-row="2" data-col="4" data-sizex="1" data-sizey="1">
-      <div data-id="bdd-test-count" data-view="Number" data-title="BDD Tests" data-min="0"></div>
-    </li>
-
-    <li data-row="3" data-col="1" data-sizex="1" data-sizey="1">
       <div data-id="jira-sprint-days-remaining" data-view="JiraSprintRemainingDays" style="background-color: #4682b4"></div>
     </li>
 
-    <li data-row="3" data-col="2" data-sizex="1" data-sizey="1">
+    <li data-row="2" data-col="4" data-sizex="1" data-sizey="1">
       <div data-id="jira-sprint-progress" data-view="SprintProgress" data-title="Sprint Progress" data-min="0"></div>
+    </li>
+
+    <li data-row="2" data-col="5" data-sizex="1" data-sizey="1">
+      <div data-id="rate-your-day" data-view="GoogleColumn" data-title="Weekly Team Mood" data-legend_position="none"
+           data-annotation_font_size="16" data-axis_font_size="14"></div>
+    </li>
+
+    <li data-row="3" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="integration-test-count" data-view="Number" data-title="Integration Tests" data-min="0"></div>
+    </li>
+
+    <li data-row="3" data-col="2" data-sizex="1" data-sizey="1">
+      <div data-id="bdd-test-count" data-view="Number" data-title="BDD Tests" data-min="0"></div>
     </li>
 
     <li data-row="3" data-col="3" data-sizex="1" data-sizey="1">
