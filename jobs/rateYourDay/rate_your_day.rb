@@ -22,7 +22,7 @@ class RateYourDay
       results = {}
       ryd_results = get_rate_your_day_summary
       if ryd_results.length > 7
-        ryd_results.drop(ryd_results.size - 7)
+        ryd_results = ryd_results.drop(ryd_results.size - 7)
       end
 
       results['totalGood'] = 0
