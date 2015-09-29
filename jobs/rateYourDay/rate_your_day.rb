@@ -15,14 +15,17 @@ class RateYourDay
     RATE_YOUR_DAY_AUTH_PASSWORD = config["rateYourDay"]["auth"]["password"]
     RATE_YOUR_DAY_AUTH_GRANT_TYPE = config["rateYourDay"]["auth"]["grantType"]
 
+    DAYS_IN_WEEK = 5  # The API records only days that ratings were made (i.e. not weekends/public holidays etc)
+                      # , so we're really just getting the last 5 "working days" of results.
+
     def get_weekly_results()
 
       puts "[DEBUG] Fetching RateYourDay test results..."
 
       results = {}
       ryd_results = get_rate_your_day_summary
-      if ryd_results.length > 7
-        ryd_results = ryd_results.drop(ryd_results.size - 7)
+      if ryd_results.length > DAYS_IN_WEEK
+        ryd_results = ryd_results.drop(ryd_results.size - DAYS_IN_WEEK)
       end
 
       results['totalGood'] = 0
