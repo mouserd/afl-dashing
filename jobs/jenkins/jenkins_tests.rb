@@ -1,9 +1,10 @@
 
 def fetch_test_results
 
+  # The names of these jobs should be moved out to configuration!
   unit_test_results = Jenkins.get_test_results("CMS unit test numbers")
   integration_test_results = Jenkins.get_test_results("CMS integration test numbers")
-  js_unit_tests_results = Jenkins.get_test_results("CMS unit test numbers (js)")
+  js_unit_tests_results = Jenkins.get_test_results("CMS unit test numbers - JS")
 
   send_event('unit-test-count', unit_test_results)
   send_event('js-unit-test-count', js_unit_tests_results)
