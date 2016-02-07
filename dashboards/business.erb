@@ -1,0 +1,59 @@
+<script type='text/javascript'>
+  $(function() {
+    // These settings override the defaults set in application.coffee. You can do this on a per dashboard basis.
+//    Dashing.gridsterLayout('[{"col":2,"row":1},{"col":1,"row":1},{"col":3,"row":1},{"col":2,"row":2},{"col":3,"row":2},{"col":1,"row":2},{"col":5,"row":1},{"col":4,"row":2},{"col":2,"row":3}]');
+    Dashing.widget_base_dimensions = [380, 340];
+    Dashing.numColumns = 4;
+//    Dashing.numRows = 3;
+  });
+</script>
+
+<% content_for :title do %>AFL Media Metrics<% end %>
+<div class="gridster">
+  <ul>
+
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="welcome" data-view="Text" data-title="Paid Subscriptions" data-text="" class="large"></div>
+    </li>
+
+    <li data-row="1" data-col="2" data-sizex="1" data-sizey="1">
+      <div data-id="livepass-subscriptions" data-view="MeterNumber" data-title="LivePass" data-min="0" data-max="138000"></div>
+    </li>
+
+    <li data-row="1" data-col="3" data-sizex="1" data-sizey="1">
+      <div data-id="watchafl-subscriptions" data-view="MeterNumber" data-title="WatchAfl" data-min="0" data-max="35500"></div>
+    </li>
+
+    <li data-row="1" data-col="4" data-sizex="1" data-sizey="1">
+      <div data-id="fantasy-subscriptions" data-view="MeterNumber" data-title="Fantasy" data-min="0" data-max="18000"></div>
+    </li>
+
+    <li data-row="2" data-col="1" data-sizex="1" data-sizey="2">
+      <div data-id="welcome" data-view="Text" data-title="Digital Audience" data-text="" class="large"></div>
+    </li>
+
+    <li data-row="2" data-col="2" data-sizex="1" data-sizey="1">
+      <div data-id="unique-visitor-count" data-view="MeterNumber" data-title="Unique Visitors" data-min="0" data-max="15000000"></div>
+    </li>
+
+
+    <li data-row="2" data-col="3" data-sizex="1" data-sizey="1">
+      <div data-id="video-streams-count" data-view="MeterNumber" data-title="Video Streams" data-min="0" data-max="15000000"
+           data-show-difference-as-percentage="true"></div>
+    </li>
+
+
+    <li data-row="2" data-col="4" data-sizex="1" data-sizey="2">
+      <div data-id="nps" data-view="Number" data-title="NPS" data-min="-50" data-current="+20" data-max="50"></div>
+    </li>
+
+
+    <li data-row="3" data-col="2" data-sizex="1" data-sizey="1">
+      <div data-id="tippers-count" data-view="MeterNumber" data-title="Tippers" data-min="0" data-max="500000"></div>
+    </li>
+
+    <li data-row="3" data-col="3" data-sizex="1" data-sizey="1">
+      <div data-id="fantasy-coaches-count" data-view="MeterNumber" data-title="Fantasy Coaches" data-min="0" data-max="300000"></div>
+    </li>
+  </ul>
+</div>
