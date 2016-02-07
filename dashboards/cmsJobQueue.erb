@@ -1,0 +1,48 @@
+<script type='text/javascript'>
+  $(function() {
+    // These settings override the defaults set in application.coffee. You can do this on a per dashboard basis.
+//    Dashing.gridsterLayout('[{"col":2,"row":1},{"col":1,"row":1},{"col":3,"row":1},{"col":2,"row":2},{"col":3,"row":2},{"col":1,"row":2},{"col":5,"row":1},{"col":4,"row":2},{"col":2,"row":3}]');
+    Dashing.widget_base_dimensions = [330, 270];
+    Dashing.numColumns = 5;
+    Dashing.numRows = 4;
+  });
+</script>
+
+<% content_for :title do %>CMS Publish Queue<% end %>
+<div class="gridster">
+  <ul>
+
+    <li data-row="1" data-col="1" data-sizex="1" data-sizey="3">
+      <div data-id="welcome" data-view="Text" data-title="CMS Publish Queue" data-text="" class="large"></div>
+    </li>
+
+    <li data-row="1" data-col="2" data-sizex="4" data-sizey="3">
+      <div data-id="jobs-detail" data-view="Table" data-title="Job Items"></div>
+    </li>
+
+    <li data-row="4" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="clock" data-view="Clock"></div>
+    </li>
+
+    <!--<li data-row="2" data-col="2" data-sizex="3" data-sizey="2">-->
+      <!--<div data-id="completed-jobs-detail" data-view="Table" data-title="Last 10 Completed Jobs"></div>-->
+    <!--</li>-->
+
+    <li data-row="4" data-col="2" data-sizex="1" data-sizey="1">
+      <div data-id="publish-job-count" data-view="Number" data-title="Jobs Published Today" data-current="0" data-min="0"></div>
+    </li>
+
+    <li data-row="4" data-col="3" data-sizex="1" data-sizey="1">
+      <div data-id="average-publish-time" data-view="Number" data-title="Average Processing Time" data-current="0" data-measure="secs"
+           data-min="0"></div>
+    </li>
+
+    <li data-row="4" data-col="4" data-sizex="1" data-sizey="1">
+      <div data-id="hpd-dependencies-count" data-view="Number" data-title="#HPD Dependencies" data-current="12000000" data-min="0"></div>
+    </li>
+
+    <li data-row="4" data-col="5" data-sizex="1" data-sizey="1">
+      <div data-id="hpd-invalidatation-queue" data-view="Number" data-title="HPD Invalidation Queue" data-min="0"></div>
+    </li>
+  </ul>
+</div>
