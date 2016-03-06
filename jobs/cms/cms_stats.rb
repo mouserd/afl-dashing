@@ -116,9 +116,9 @@ def fetch_job_queue_stats(lastJobQueueStats)
   jobQueueStats
 end
 
-SCHEDULER.every '10s', :first_in => 0 do |job|
-  fetch_complete_job_queue_items(headingRows)
-  fetch_incomplete_job_queue_items(headingRows)
-
-  lastJobQueueStats = fetch_job_queue_stats(lastJobQueueStats || {})
-end
+# SCHEDULER.every '10s', :first_in => 0 do |job|
+#   fetch_complete_job_queue_items(headingRows)
+#   fetch_incomplete_job_queue_items(headingRows)
+#
+#   lastJobQueueStats = fetch_job_queue_stats(lastJobQueueStats || {})
+# end
