@@ -30,7 +30,7 @@ class Jenkins
         end
       end
 
-      puts "[DEBUG] results: #{results}"
+      puts "[DEBUG] test results: #{results}"
 
       results
     end
@@ -49,7 +49,7 @@ class Jenkins
         end
       end
 
-      puts "[DEBUG] results: #{results}"
+      puts "[DEBUG] js test results: #{results}"
 
       results
     end
@@ -71,7 +71,7 @@ class Jenkins
         end
       end
 
-      puts "[DEBUG] results: #{results}"
+      puts "[DEBUG] bdd test results: #{results}"
 
       results
     end
@@ -84,7 +84,7 @@ class Jenkins
       results["current"] = data["numberOfWarnings"]
       results["last"] = data["numberOfWarnings"] - data["numberOfFixedWarnings"] - data["numberOfNewWarnings"]
 
-      puts "[DEBUG] results: #{results}"
+      puts "[DEBUG] analysis results: #{results}"
 
       results
     end
@@ -104,7 +104,7 @@ class Jenkins
         end
       end
 
-      puts "[DEBUG] results: #{results}"
+      puts "[DEBUG] historic analysis results: #{results}"
 
       results
     end

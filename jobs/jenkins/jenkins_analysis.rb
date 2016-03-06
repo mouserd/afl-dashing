@@ -1,9 +1,9 @@
 
 def fetchAnalysisResults
 
-  pmd = Jenkins.get_analysis_results("pmd", "CMS")
-  findbugs = Jenkins.get_analysis_results("findbugs", "CMS")
-  checkstyle = Jenkins.get_analysis_results("checkstyle", "CMS")
+  pmd = Jenkins.get_analysis_results("pmd", "CMS_Back_End_Build")
+  findbugs = Jenkins.get_analysis_results("findbugs", "CMS_Back_End_Build")
+  checkstyle = Jenkins.get_analysis_results("checkstyle", "CMS_Back_End_Build")
 
   send_event("findbugs", findbugs)
   send_event("pmd", pmd)
