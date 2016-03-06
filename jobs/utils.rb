@@ -1,4 +1,7 @@
 def to_friendly_duration(millis)
+
+  return nil if millis.blank?
+
   x = millis / 1000
   seconds = x % 60
   x /= 60
