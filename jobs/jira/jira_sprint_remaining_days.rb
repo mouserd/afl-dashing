@@ -15,7 +15,7 @@ JIRA_AUTH = {
 # TODO Refactor to move these into the Jira class where possible
 # the key of this mapping must be a unique identifier for your board, the according value must be the view id that is used in Jira
 view_mapping = {
-  "view1" => { :view_id => 26 },
+  "view1" => { :view_id => 74 },
 }
 
 # gets the view for a given view id
@@ -42,6 +42,9 @@ def get_active_sprint_for_view(view_id)
       return sprint
     end
   end
+
+  # return the most recent sprint if none are 'active'
+  return sprints[sprints.count-1]
 end
 
 # gets the remaining days for the sprint
@@ -77,15 +80,15 @@ view_mapping.each do |view, view_id|
     sprint_name = ""
     days = ""
     view_json = get_view_for_viewid(view_id[:view_id])
-    if (view_json)
+    if view_json
       # view_name = view_json["name"]
       sprint_json = get_active_sprint_for_view(view_json["id"])
-      if (sprint_json)
+      if sprint_json
         sprint_name = sprint_json["name"]
 
         ## Cleanup jira sprint name just to show the actual sprint number.
-        sprint_name = sprint_name.slice(sprint_name.index(" - ")+3..sprint_name.length)  # Remove #808
-        sprint_name = sprint_name.slice(0..sprint_name.index(" - "))  # Remove sprint date
+        # Based on a sprint name of 'R57-04/03-17/03' format, we want just the '57' portion
+        sprint_name = sprint_name.slice(0...sprint_name.index("-")).slice(1...sprint_name.length)
 
         days_json = get_remaining_days(view_json["id"], sprint_json["id"])
         days = days_json["days"]
@@ -94,7 +97,7 @@ view_mapping.each do |view, view_id|
 
     send_event("jira-sprint-days-remaining", {
       viewName: "Days Remaining",
-      sprintName: sprint_name,
+      sprintName: "Sprint #{sprint_name}",
       daysRemaining: days
     })
   end
